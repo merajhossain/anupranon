@@ -124,7 +124,7 @@ function bn2enNumber ($number){
                       $postID = get_the_ID();
                       $term_list = wp_get_post_terms( $postID, 'writer');
                       foreach ($term_list as $key => $writer) {
-                        echo '<h4 class="margin-bottom-0"><a href="'.esc_attr(get_term_link($writer->term_id)).'">'.$writer->name.'</a></h4>';
+                        echo '<p class="margin-bottom-0">Author: <a href="'.esc_attr(get_term_link($writer->term_id)).'">'.$writer->name.'</a></p>';
                       }
                     ?>
                   </td>
@@ -141,17 +141,6 @@ function bn2enNumber ($number){
                   </td>
                 </tr>
                 <tr>
-                <?php if($sale_price): ?>
-                  <td>
-                    <p class="margin-bottom-0"> <?php if ($sale_price) : ?> Our Price : &#2547;<b>
-                    <?php
-                      $usdRate = $value = anupranan_get_theme_option( 'dollarRate' );
-                      $usdPrice = $price;
-                      $reg_price =  floor($usdPrice * $usdRate);
-                      echo bn2enNumber($reg_price);
-                      ?></b> <?php endif; ?></p>
-                  </td>
-                    <?php endif; ?>
                   <td>
                     <p class="margin-bottom-0">Regular Price : <span class="<?php echo $lineThrough; ?> nopadding-left">&#2547;<?php
                     $usdRate = $value = anupranan_get_theme_option( 'dollarRate' );
@@ -160,6 +149,17 @@ function bn2enNumber ($number){
                     echo bn2enNumber($saleprice);
                     ?></span></p>
                   </td>
+                  <td>
+                    <?php if($sale_price): ?>
+                        <p class="margin-bottom-0"> <?php if ($sale_price) : ?> Our Price : &#2547;<b>
+                        <?php
+                        $usdRate = $value = anupranan_get_theme_option( 'dollarRate' );
+                        $usdPrice = $price;
+                        $reg_price =  floor($usdPrice * $usdRate);
+                        echo bn2enNumber($reg_price);
+                        ?></b> <?php endif; ?></p>
+                    <?php endif; ?>
+                  </td>
                 </tr>
                 <tr>
                   <td colspan="2">
@@ -167,7 +167,7 @@ function bn2enNumber ($number){
                       $postID = get_the_ID();
                       $term_list = wp_get_post_terms( $postID, 'publisher');
                       foreach ($term_list as $key => $publisher) {
-                        echo '<h4 class="margin-bottom-0">Publisher : <a href="'.esc_attr(get_term_link($publisher->term_id)).'">'.$publisher->name.'</a></h4>';
+                        echo '<p class="margin-bottom-0">Publisher : <a href="'.esc_attr(get_term_link($publisher->term_id)).'">'.$publisher->name.'</a></p>';
                       }
                     ?>
                   </td>
@@ -271,8 +271,9 @@ function bn2enNumber ($number){
 
     <ul id="myTab" class="nav nav-tabs nav-top-border margin-top-80" role="tablist">
         <li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
-<!--     <li role="presentation"><a href="#specs" role="tab" data-toggle="tab">Specifications</a></li>-->
+<!--    <li role="presentation"><a href="#specs" role="tab" data-toggle="tab">Specifications</a></li>-->
         <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Reviews (<?php echo get_comments_number(); ?>)</a></li>
+        <li role="presentation"><a href="#author" role="tab" data-toggle="tab">Author</a></li>
     </ul>
 
     <div class="tab-content padding-top-20">
@@ -379,7 +380,53 @@ function bn2enNumber ($number){
             <!-- REVIEW FORM -->
             <?php comments_template( 'woocommerce/single-product-reviews' ); ?>
             <!-- /REVIEW FORM -->
+        </div>
 
+        <!-- REVIEWS -->
+        <div role="tabpanel" class="tab-pane fade" id="author">
+            
+            <?php
+                $postID = get_the_ID();
+                $term_list = wp_get_post_terms( $postID, 'writer');
+                $term_id = '';
+                $authorImage ='';
+                $authorName = '';
+                $birthPlace = '';
+                $wrFacebookUrl = '';
+                $wrDescription = '';
+                foreach ($term_list as $key => $writer) {
+                    $term_id = $writer->term_id;
+                    $wrDescription = $writer->description;
+                }
+                $writers = get_terms(array(
+                    'taxonomy' => 'writer',
+                    'with_thumbnail' => true,
+                    'hide_empty' => false,
+                ));
+                if (!empty($writers)):
+                    foreach ($writers as $writer):
+                        $writerThumbId = get_term_thumbnail_id($term_id);
+                        $writerThum = wp_get_attachment_image_src($writerThumbId, 'thumbnail');
+                        $authorImage = $writerThum[0]; // thumbnail url
+                        $authorName = get_term_meta($term_id, 'bn_bangla_title', true);
+                        $birthPlace = get_term_meta($term_id, 'wr_birth_place', true);
+                        $wrFacebookUrl = get_term_meta($term_id, 'wr_facebookUrl', true);
+                    endforeach;
+                endif;
+                
+            ?>
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-2">
+                    <div class="wr-image">
+                        <img src="<?php echo $authorImage;?>" class="img-responsive"/>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-10">
+                    <h4 style="margin-bottom:5px;"><?php echo $authorName; ?></h4>
+                    <p style="margin-bottom:10px;"><?php echo $wrFacebookUrl == ''?'<a href="https://www.facebook.com/" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>' : '<a href="'.$wrFacebookUrl.'" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>'; ?></p>
+                    <p><?php echo $wrDescription; ?></p>
+                </div>
+            </div>
         </div>
     </div>
 
