@@ -57,7 +57,7 @@ $(document).ready(function () {
       source: projects
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
       return $( "<li>" )
-        .append( '<a href="'+item.url+'"><table class="table"><tr><td style="width: 100px;"><img src="'+item.image+'" class="media-object" style="width:80px; height:100px;"></td><td class="text-left"><h4 class="media-heading">' + item.title + '</h4><p>'+ item.writer+'</p></td><td class="text-right"><h5>'+item.salePrice+'<br/><span class="text-danger">'+item.regularpPrice+'</span></h5></div></td></tr></table></a></div>' )
+        .append( '<a href="'+item.url+'"><table class="table"><tr><td style="width: 100px;"><img src="'+item.image+'" class="media-object" style="width:80px; height:100px;"></td><td class="text-left"><h4 class="media-heading">' + item.title + '</h4><p>'+ item.writer+'</p></td><td class="text-right">'+ item.priceTemplate +'</td></tr></table></div></a>' )
         .appendTo( ul );
     };
 
@@ -96,7 +96,7 @@ $(document).ready(function () {
         source: projects
       }).autocomplete( "instance" )._renderItem = function( ul, item ) {
         return $( "<li>" )
-          .append( '<a href="'+item.url+'"><table class="table"><tr><td style="width: 100px;"><img src="'+item.image+'" class="media-object" style="width:80px; height:100px;"></td><td class="text-left"><h4 class="media-heading">' + item.title + '</h4><p>'+ item.writer+'</p></td><td class="text-right"><h5>'+item.salePrice+'<br/><span class="text-danger">'+item.regularpPrice+'</span></h5></div></td></tr></table></a></div>' )
+          .append( '<a href="'+item.url+'"><table class="table"><tr><td style="width: 100px;"><img src="'+item.image+'" class="media-object" style="width:80px; height:100px;"></td><td class="text-left"><h4 class="media-heading">' + item.title + '</h4><p>'+ item.writer+'</p></td><td class="text-right">'+ item.priceTemplate +'</td></tr></table></div></a>' )
           .appendTo( ul );
       };
     });

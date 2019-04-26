@@ -48,12 +48,18 @@
           $sale_price = floor(get_post_meta( get_the_ID(), '_sale_price', true) * $usdRate);
           $price = floor(!empty($sale_price) && $sale_price>0 ? $sale_price : $regular_price);
           $perMalink = get_the_permalink();
+          $priceTemplate = '';
+          if($sale_price){
+            $priceTemplate = '<h5>'.bn2enNumber($sale_price).'<br/><span class="text-danger">'.bn2enNumber($regular_price).'</span></h5>';
+          }else{
+            $priceTemplate = '<h5>'.bn2enNumber($regular_price).'</h5>';
+          }
+          
           $productArray = array(
                           'title' =>  $bnTitle,
                           'label' =>  $title,
                           'price' => bn2enNumber($price),
-                          'salePrice' => bn2enNumber($sale_price),
-                          'regularpPrice' => bn2enNumber($regular_price),
+                          'priceTemplate' => $priceTemplate,
                           'url' => $perMalink,
                           'image' => $thumbSrc,
                           'writer' => $writerName
@@ -76,6 +82,7 @@
       $writerThumbId = get_term_thumbnail_id($term->term_id);
       $writerThum = wp_get_attachment_image_src($writerThumbId, 'thumbnail');
       $writerThumSrc = $writerThum[0];
+      $priceTemplate = '';
       /*if( $writerThumSrc == ''){
         $writerThumSrc =bloginfo('template_url').'/images/avatar2.jpg';
       }*/
@@ -83,8 +90,7 @@
                       'title' =>  $writerBnName,
                       'label' =>  $title,
                       'price' => '',
-                      'salePrice' => '',
-                      'regularpPrice' => '',
+                      'priceTemplate' => $priceTemplate,
                       'url' => $perMalink,
                       'image' => $writerThumSrc,
                       'writer' => ''
@@ -105,6 +111,7 @@
      $writerThumbId = get_term_thumbnail_id($term->term_id);
      $writerThum = wp_get_attachment_image_src($writerThumbId, 'thumbnail');
      $writerThumSrc = $writerThum[0];
+     $priceTemplate = '';
      /*if( $writerThumSrc == ''){
        $writerThumSrc =bloginfo('template_url').'/images/avatar2.jpg';
      }*/
@@ -112,8 +119,7 @@
                      'title' =>  $writerBnName,
                      'label' =>  $title,
                      'price' => '',
-                     'salePrice' => '',
-                     'regularpPrice' => '',
+                     'priceTemplate' => $priceTemplate,
                      'url' => $perMalink,
                      'image' => $writerThumSrc,
                      'writer' => ''
@@ -137,12 +143,12 @@
       /*if( $writerThumSrc == ''){
         $writerThumSrc =bloginfo('template_url').'/images/avatar2.jpg';
       }*/
+      $priceTemplate = '';
       $productArray = array(
                       'title' =>  $writerBnName,
                       'label' =>  $title,
                       'price' => '',
-                      'salePrice' => '',
-                      'regularpPrice' => '',
+                      'priceTemplate' => $priceTemplate,
                       'url' => $perMalink,
                       'image' => $writerThumSrc,
                       'writer' => ''

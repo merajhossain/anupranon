@@ -142,7 +142,7 @@ function bn2enNumber ($number){
                 </tr>
                 <tr>
                   <td>
-                    <p class="margin-bottom-0">Regular Price : <span class="<?php echo $lineThrough; ?> nopadding-left">&#2547;<?php
+                    <p class="margin-bottom-0">Regular Price : <span class="<?php echo $lineThrough; ?> nopadding-left">&#2547; <?php
                     $usdRate = $value = anupranan_get_theme_option( 'dollarRate' );
                     $usdPrice = $regular_price;
                     $saleprice =  floor($usdPrice * $usdRate);
@@ -151,7 +151,7 @@ function bn2enNumber ($number){
                   </td>
                   <td>
                     <?php if($sale_price): ?>
-                        <p class="margin-bottom-0"> <?php if ($sale_price) : ?> Our Price : &#2547;<b>
+                        <p class="margin-bottom-0"> <?php if ($sale_price) : ?> Our Price : &#2547; <b>
                         <?php
                         $usdRate = $value = anupranan_get_theme_option( 'dollarRate' );
                         $usdPrice = $price;

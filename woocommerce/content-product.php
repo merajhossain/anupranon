@@ -41,7 +41,6 @@ if (empty($product) || !$product->is_visible()) {
         $regular_price = get_post_meta( $product->id, '_regular_price', true);
         $sale_price = get_post_meta( $product->id, '_sale_price', true);
         $price = !empty($sale_price) && $sale_price>0 ? $sale_price : $regular_price;
-        
         //echo wc_get_product_ids_on_sale();
         //echo $product->ID.'<pre>'; print_r($product); echo '</pre>';
         ?>

@@ -172,6 +172,9 @@ form.searchform{
   .ui-menu-item .table .text-danger{
     text-decoration: line-through;
   }
+  .ui-menu-item-wrapper{
+    cursor: pointer;
+  }
   @media (min-width: 700px){
     .searchResult {
         background-color: #ffffff;
