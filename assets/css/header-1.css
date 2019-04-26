@@ -1,0 +1,187 @@
+@font-face {
+  font-family: kalpurus;
+  src: url('../fonts/Kalpurush.ttf');
+}
+#topMain>li>a {
+  height: auto;
+  line-height: 40px;
+}
+#topMain.nav-pills>li>a {
+  color: #1F262D;
+  font-weight: 400;
+  background-color: transparent;
+  font-family: kalpurus;
+  font-size: 15px;
+}
+#topMain.nav-pills>li:hover>a,
+#topMain.nav-pills>li:focus>a {
+	color:#1F262D;
+	background-color:transparent;
+}
+#topMain.nav-pills>li.active>a {
+	color:#687482;
+}
+
+#topMain.nav-pills>li>a.dropdown-toggle {
+	padding-right:25px;
+
+	-webkit-border-radius: 0;
+	   -moz-border-radius: 0;
+			border-radius: 0;
+}
+#topMain.nav-pills>li>a.dropdown-toggle:after {
+	display: block;
+	content: "\f107";
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin: -5px 0 0;
+	font-family: FontAwesome;
+	font-size: 12px;
+	opacity: .3;
+	line-height: 1em;
+
+	-webkit-transition: -webkit-transform .2s ease-in;
+	-moz-transition: -moz-transform .2s ease-in;
+	-ms-transition: -ms-transform .2s ease-in;
+	-o-transition: -o-transform .2s ease-in;
+	transition: transform .2s ease-in;
+}
+#header.bottom.dropup #topMain.nav-pills>li>a.dropdown-toggle:after {
+	content: "\f106";
+}
+
+#topNav .navbar-collapse {
+	float:right;
+}
+
+#topNav a.logo {
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+
+@media only screen and (max-width: 1215px) {
+	#topMain.nav-pills>li>a {
+		font-size:13px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	/* Force 60px */
+	/*#header {
+		height:60px !important;
+	}*/
+	#header #topNav a.logo {
+		height:60px !important;
+		line-height:50px !important;
+	}
+	#header #topNav a.logo>img {
+		max-height:60px !important;
+	}
+	#header #topNav #topMain>li>a {
+		height:40px !important;
+		line-height:40px !important;
+		padding-top:0;
+	}
+
+
+	#topMain>li {
+		border-bottom:rgba(0,0,0,0.1) 1px solid;
+	}
+	#topMain>li:last-child {
+		border-bottom:0;
+	}
+
+		#header li.search .search-box {
+			margin:0 !important;
+			position:fixed;
+			left:0; right:0;
+			top:60px !important;
+			width:100%;
+			background-color:#fff;
+			border-top:rgba(0,0,0,0.1) 1px solid;
+		}
+}
+
+ul#ui-id-1 {
+    z-index: 9999 !important;
+}
+
+form.searchform{
+  margin-bottom: 0px;
+  position: relative;
+}
+.loading{
+    position: absolute;
+    z-index: 3;
+    right: 50px;
+    top: 9px;
+    background: url('../images/loaders/4s.gif');
+    height: 15px;
+    width: 15px;
+    display: none;
+}
+/*.ui-autocomplete {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }*/
+  .ui-autocomplete {
+    max-height: 400px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  .searchFormWrapper{
+    position:relative;
+
+  }
+  .searchResult .table{
+    border-bottom: none !important;
+  }
+  .searchResult .text-danger{
+    text-decoration: line-through;
+  }
+  .ui-state-active{
+    background-color: transparent !important;
+    padding-bottom: 0px !important;
+  }
+  .ui-state-active p{
+    color: #333;
+  }
+  .ui-menu .ui-menu-divider{
+    display: none !important;
+  }
+  .ui-menu .ui-state-focus, .ui-menu .ui-state-active {
+      margin: 0px !important;
+      border: none !important;
+  }
+  .ui-menu .ui-menu-item-wrapper {
+      position: relative;
+      padding: 0 !important;
+  }
+  .ui-menu-item .table{
+    margin-bottom: 0px !important;
+  }
+  .ui-menu-item .table .text-danger{
+    text-decoration: line-through;
+  }
+  @media (min-width: 700px){
+    .searchResult {
+        background-color: #ffffff;
+        position: absolute;
+        width: 613px !important;
+        margin-left: 74px !important;
+        z-index: 1;
+        padding-left: 15px !important;
+        max-height: 500px !important;
+        overflow: auto;
+        padding-right: 30px;
+    }
+  }
