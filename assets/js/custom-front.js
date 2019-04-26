@@ -14,7 +14,7 @@ $(document).ready(function () {
             $("#headerMiniCarttotalCost").html(obj.total_cost);
         });
     });
-    
+
     $('body').on('updated_cart_totals', function () {
         //alert("tttt");
         var ajxData = {
@@ -34,10 +34,10 @@ $(document).ready(function () {
         $("#singleProductAddToCartBtn").data("quantity", productQty);
         //$("#singleProductAddToCartBtn").attr("data-quantity", productQty);
     });
-    
+
     var projects = new Array();
-    var productSearchURL = 'http://www.anupranon.com/search-data/';
-    
+    var productSearchURL = 'http://localhost/aupranon/search-data/';
+
     $(".loading").show();
     $.ajax({
         url: productSearchURL,
@@ -100,5 +100,5 @@ $(document).ready(function () {
           .appendTo( ul );
       };
     });
-    
+
 });

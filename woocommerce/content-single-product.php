@@ -34,7 +34,7 @@ if (post_password_required()) {
 }
 
 global $product;
-
+$lineThrough = '';
 $meta = get_post_meta($product->id, '_bq_product_meta', TRUE);
 $title = empty($meta["_bn_title"]) ? get_the_title() : $meta["_bn_title"];
 $publishDate = $meta["_publishDate"];
@@ -46,7 +46,9 @@ $fullImgSrc = $fullImg[0];
 $regular_price = get_post_meta($product->id, '_regular_price', true);
 $sale_price = get_post_meta($product->id, '_sale_price', true);
 $price = !empty($sale_price) && $sale_price > 0 ? $sale_price : $regular_price;
-
+if($sale_price){
+        $lineThrough = 'line-through';
+}
 $stock_status = get_post_meta($product->id, '_stock_status', true);
 
 
@@ -139,6 +141,7 @@ function bn2enNumber ($number){
                   </td>
                 </tr>
                 <tr>
+                <?php if($sale_price): ?>
                   <td>
                     <p class="margin-bottom-0"> <?php if ($sale_price) : ?> Our Price : &#2547;<b>
                     <?php
@@ -148,8 +151,9 @@ function bn2enNumber ($number){
                       echo bn2enNumber($reg_price);
                       ?></b> <?php endif; ?></p>
                   </td>
+                    <?php endif; ?>
                   <td>
-                    <p class="margin-bottom-0">Regular Price : <span class="line-through nopadding-left">&#2547;<?php
+                    <p class="margin-bottom-0">Regular Price : <span class="<?php echo $lineThrough; ?> nopadding-left">&#2547;<?php
                     $usdRate = $value = anupranan_get_theme_option( 'dollarRate' );
                     $usdPrice = $regular_price;
                     $saleprice =  floor($usdPrice * $usdRate);
