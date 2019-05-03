@@ -362,7 +362,50 @@ function bn2enNumber ($number){
             </div>
         </div>
         -->
+        <div role="tabpanel" class="tab-pane fade" id="author">
 
+            <?php
+                $postID = get_the_ID();
+                $term_list = wp_get_post_terms( $postID, 'writer');
+                $term_id = '';
+                $authorImage ='';
+                $authorName = '';
+                $birthPlace = '';
+                $wrFacebookUrl = '';
+                $wrDescription = '';
+                foreach ($term_list as $key => $writer) {
+                    $term_id = $writer->term_id;
+                    $wrDescription = $writer->description;
+                }
+                $writers = get_terms(array(
+                    'taxonomy' => 'writer',
+                    'with_thumbnail' => true,
+                    'hide_empty' => false,
+                ));
+                foreach ($writers as $writer):
+                    $writerThumbId = get_term_thumbnail_id($term_id);
+                    $writerThum = wp_get_attachment_image_src($writerThumbId, 'thumbnail');
+                    $authorImage = $writerThum[0]; // thumbnail url
+                    $authorName = get_term_meta($term_id, 'bn_bangla_title', true);
+                    $birthPlace = get_term_meta($term_id, 'wr_birth_place', true);
+                    $wrFacebookUrl = get_term_meta($term_id, 'wr_facebookUrl', true);
+                endforeach;
+            ?>
+            <div class="row">
+                <?php if($authorImage):?>
+                <div class="col-md-3 col-sm-4 col-xs-2">
+                    <div class="wr-image">
+                        <img src="<?php echo $authorImage;?>" class="img-responsive"/>
+                    </div>
+                </div>
+                <?php endif; ?>
+            <?php if($authorImage):?><div class="col-md-9 col-sm-8 col-xs-10"><?php else:  ?><div class="col-md-12 col-sm-12 col-xs-12"><?php endif; ?>
+                    <h4 style="margin-bottom:5px;"><?php echo $authorName; ?></h4>
+                    <p style="margin-bottom:10px;"><?php echo $wrFacebookUrl == ''?'<a href="https://www.facebook.com/" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>' : '<a href="'.$wrFacebookUrl.'" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>'; ?></p>
+                    <p><?php echo $wrDescription; ?></p>
+                </div>
+            </div>
+        </div>
         <!-- REVIEWS -->
         <div role="tabpanel" class="tab-pane fade" id="reviews">
             <!-- REVIEW ITEM -->
@@ -383,51 +426,7 @@ function bn2enNumber ($number){
         </div>
 
         <!-- REVIEWS -->
-        <div role="tabpanel" class="tab-pane fade" id="author">
-            
-            <?php
-                $postID = get_the_ID();
-                $term_list = wp_get_post_terms( $postID, 'writer');
-                $term_id = '';
-                $authorImage ='';
-                $authorName = '';
-                $birthPlace = '';
-                $wrFacebookUrl = '';
-                $wrDescription = '';
-                foreach ($term_list as $key => $writer) {
-                    $term_id = $writer->term_id;
-                    $wrDescription = $writer->description;
-                }
-                $writers = get_terms(array(
-                    'taxonomy' => 'writer',
-                    'with_thumbnail' => true,
-                    'hide_empty' => false,
-                ));
-                if (!empty($writers)):
-                    foreach ($writers as $writer):
-                        $writerThumbId = get_term_thumbnail_id($term_id);
-                        $writerThum = wp_get_attachment_image_src($writerThumbId, 'thumbnail');
-                        $authorImage = $writerThum[0]; // thumbnail url
-                        $authorName = get_term_meta($term_id, 'bn_bangla_title', true);
-                        $birthPlace = get_term_meta($term_id, 'wr_birth_place', true);
-                        $wrFacebookUrl = get_term_meta($term_id, 'wr_facebookUrl', true);
-                    endforeach;
-                endif;
-                
-            ?>
-            <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-2">
-                    <div class="wr-image">
-                        <img src="<?php echo $authorImage;?>" class="img-responsive"/>
-                    </div>
-                </div>
-                <div class="col-md-9 col-sm-8 col-xs-10">
-                    <h4 style="margin-bottom:5px;"><?php echo $authorName; ?></h4>
-                    <p style="margin-bottom:10px;"><?php echo $wrFacebookUrl == ''?'<a href="https://www.facebook.com/" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>' : '<a href="'.$wrFacebookUrl.'" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>'; ?></p>
-                    <p><?php echo $wrDescription; ?></p>
-                </div>
-            </div>
-        </div>
+
     </div>
 
 
