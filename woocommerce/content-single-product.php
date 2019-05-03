@@ -401,8 +401,8 @@ function bn2enNumber ($number){
                 <?php endif; ?>
             <?php if($authorImage):?><div class="col-md-9 col-sm-8 col-xs-10"><?php else:  ?><div class="col-md-12 col-sm-12 col-xs-12"><?php endif; ?>
                     <h4 style="margin-bottom:5px;"><?php echo $authorName; ?></h4>
-                    <p style="margin-bottom:10px;"><?php echo $wrFacebookUrl == ''?'<a href="https://www.facebook.com/" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>' : '<a href="'.$wrFacebookUrl.'" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>'; ?></p>
-                    <p><?php echo $wrDescription; ?></p>
+                    <p style="margin-bottom:10px;"><?php echo $wrFacebookUrl == ''? '' : '<a href="'.$wrFacebookUrl.'" class="social-icon social-icon-sm social-icon-border social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="icon-facebook"></i><i class="icon-facebook"></i></a>'; ?></p>
+                      <p><?php echo $wrDescription == '' ? 'No author description' : $wrDescription; ?></p>
                 </div>
             </div>
         </div>

@@ -8,10 +8,12 @@
 }
 #topMain.nav-pills>li>a {
   color: #1F262D;
-  font-weight: 400;
+  /*font-weight: 400;
   background-color: transparent;
   font-family: kalpurus;
-  font-size: 15px;
+  font-size: 15px;*/
+  font-family: 'Kiron' !important;
+  font-size: 15px !important;
 }
 #topMain.nav-pills>li:hover>a,
 #topMain.nav-pills>li:focus>a {
